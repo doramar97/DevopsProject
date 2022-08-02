@@ -1,0 +1,23 @@
+timestamps {
+
+node () {
+
+	stage ('OrtProject - Checkout') {
+ 	 checkout([$class: 'GitSCM',
+	  branches: [[name: '*/main']],
+	  doGenerateSubmoduleConfigurations: false,
+	   extensions: [], submoduleCfg: [],
+	    userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/doramar97/DevopsProject.git']]]) 
+	}
+	stage ('OrtProject - Build') {
+ 	
+    // Unable to convert a build step referring to "hudson.plugins.ws__cleanup.PreBuildCleanup". Please verify and convert manually if required.		// Shell build step
+      sh """ 
+      aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 116313440999.dkr.ecr.eu-central-1.amazonaws.com
+      docker build -t devopsproject .
+      docker tag devopsproject:latest 116313440999.dkr.ecr.eu-central-1.amazonaws.com/devopsproject:latest
+      docker push 116313440999.dkr.ecr.eu-central-1.amazonaws.com/devopsproject:latest 
+     """ 
+	}
+  }
+}
