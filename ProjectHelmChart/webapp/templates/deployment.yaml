@@ -16,7 +16,9 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: {{ .Values.image.aws}}.dkr.ecr.{{ .Values.image.region}}.amazonaws.com/devopsproject    
+        image: {{ .Values.image.aws}}.dkr.ecr.{{ .Values.image.region}}.amazonaws.com/devopsproject
+        #116313440999.dkr.ecr.eu-central-1.amazonaws.com/devopsproject:latest  
+        #116313440999.dkr.ecr.eu-central-1.amazonaws.com/devopsproject  
         #116313440999.dkr.ecr.eu-central-1.amazonaws.com/devopsproject
         imagePullPolicy: Always
         ports:
