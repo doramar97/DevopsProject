@@ -1,13 +1,15 @@
 timestamps {
 
-node () {
+node ("docker") {
 
 	stage ('OrtProject - Checkout') {
+		
  	 checkout([$class: 'GitSCM',
 	  branches: [[name: '*/main']],
 	  doGenerateSubmoduleConfigurations: false,
 	   extensions: [], submoduleCfg: [],
 	    userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/doramar97/DevopsProject.git']]]) 
+	 
 	}
 	stage ('OrtProject - Build') {
  	
